@@ -30,33 +30,34 @@ University of Wisconsin, Nuclear Engineering Dept., 1500 Engineering Dr., Madiso
 Engineering learning and teaching styles are known to be somewhat contradictory
 \cite{felder2000learning}. While many students tend to prefer active and visual
 learning, most education is in the form of abstract and sequential
-concepts. This is no different in nuclear engineering, where complicated
-concepts such as energy and direction-dependent neutron transport are
-transmitted. Computer games provide a fun and natural way to reinforce learning
-and gain valuable intuition for physical phenomena. In this vein, an
-open-source, neutron-physics simulation game was created \cite{Carlsen2015} that
-allows users to explore interactions of neutrons with different materials and
-geometric configurations. Basic concepts such as scattering, absorption, fission
-are exposed to students in an interactive, composable environment. Used in
-conjunction with traditional teaching methods, such a tool may prove valuable
-in an effort to instill basic physical intuition and accelerate the learning of
+concepts. This is no different in nuclear engineering, where core concepts
+include difficult and demanding subjects such as energy and direction-dependent
+neutron transport. 
+
+Computer games provide a fun and natural way to reinforce learning and gain
+valuable intuition for physical phenomena. In this vein, an open-source,
+neutron-physics simulation game was created \cite{Carlsen2015} that allows users
+to explore interactions of neutrons with different materials and geometric
+configurations. Basic concepts such as scattering, absorption, fission are
+exposed to students in an interactive, composable environment. Used in
+conjunction with traditional teaching methods, such a tool may prove valuable in
+an effort to instill basic physical intuition and accelerate the learning of
 such complicated subject matter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
-The neutron-physics game is a time-step based Monte Carlo simulation and uses
-well-known methodologies for determining interaction probabilities
-\cite{lewis1984computational}. On each time step of the simulation, neutron
-positions are updated as a function of their velocities.  Then, if the neutron
-is inside any material, possible reactions (e.g. fission, scattering, etc.)
-occur according to probabilities defined by that material.  These probabilities
-are calculated as a function of distance each neutron traveled on the current
-time step.  Interaction probabilities and value sampling are not necessarily
-done using "correct" nuclear data or equations.  Rather, fundamental concepts
-are approximately modeled and specific values for probabilities were adjusted to
-make the playing simulation informative and fun.  Physics concepts modeled
-include:
+The neutron-physics game employs a time-step based Monte Carlo
+simulation \cite{lewis1984computational}. On each time step of the simulation,
+neutron positions are updated as a function of their velocities.  Then, if the
+neutron is inside any material, possible reactions (e.g. fission, scattering,
+etc.)  occur according to probabilities defined by that material.  These
+probabilities are calculated as a function of distance each neutron traveled on
+the current time step.  Interaction probabilities and value sampling are not
+necessarily done using "correct" nuclear data or equations.  Rather, fundamental
+concepts are approximately modeled and specific values for probabilities were
+adjusted to make the playing simulation informative and fun.  Physics concepts
+modeled include:
 
 \begin{itemize}
 
@@ -66,11 +67,11 @@ include:
     \item Scattering: All scattering is isotropic.
 
     \item Fission: The probability of fission is a function of neutron
-        energy/speed.  Fuel material can also be burned up over time, loosing
+        energy/speed.  Fuel material can also be burned up over time, losing
         reactivity.  The number of neutrons released from a fission event is
         randomly sampled from a normal distribution to be some integer near 2.
 
-    \item Moderation: Neutrons can loose some portion of their energy when
+    \item Moderation: Neutrons can lose some portion of their energy when
         scattering in certain materials. Some materials moderate more or less
         effectively as a function of their "temperature" (number of neutrons
         inside them) - this enables crude modeling of concepts like reactor
