@@ -30,13 +30,13 @@ Engineering learning and teaching styles are known to be somewhat contradictory
 \cite{felder2000learning}. While many students tend to prefer active and visual
 learning, most education is in the form of abstract and sequential
 concepts. This is no different in nuclear engineering, where complicated
-concepts such as energy and direction-dependent, neutron transport are
+concepts such as energy and direction-dependent neutron transport are
 transmitted. Computer games provide a fun and natural way to reinforce learning
 and gain valuable intuition for physical phenomena. In this vein, an open-source,
 neutron-physics simulation game was created that allows users to explore
 interactions of neutrons with different materials and geometric
 configurations. Basic concepts such as scattering, absorption, fission are
-exposed to students in an interactive, composible environment. Used in
+exposed to students in an interactive, composable environment. Used in
 conjunction with traditional teaching methods, such a tool may prove valueable
 in an effort to instill basic physical intuition and accelerate the learning of
 such complicated subject matter.
@@ -49,7 +49,11 @@ function of their velocities.  Then, if the neutron is inside any material,
 possible reactions (e.g. fission, scattering, etc.) occur according to
 probabilities defined by that material.  These probabilities are calculated as
 a function of distance each neutron traveled on the current time step.
-Physics concepts modeled include:
+Interaction probabilities and value sampling are not necessarily done using
+"correct" nuclear data or equations.  Rather, fundamental concepts are
+approximately modeled and specific values for probabilities were adjusted to
+make the playing simulation informative and fun.  Physics concepts modeled
+include:
 
 \begin{itemize}
 
@@ -60,7 +64,8 @@ Physics concepts modeled include:
 
     \item Fission: The probability of fission is a function of neutron
         energy/speed.  Fuel material can also be burned up over time, loosing
-        reactivity.
+        reactivity.  The number of neutrons released from a fission event is
+        randomly sampled from a normal distribution to be some integer near 2.
 
     \item Moderation: Neutrons can loose some portion of their energy when
         scattering in certain materials. Some materials moderate more or less
@@ -76,7 +81,9 @@ around material blocks with the mouse.  Partially transparent detector blocks
 can also be moved around by the user to investigate neutron populations of
 specific parts of the simulation environment.  The user can also introduce
 isotropic bursts of neutrons at any location they right-click in the
-environment (including inside material blocks).
+environment (including inside material blocks).  If materials are moved on top
+of each other, the one on top "wins" and becomes the sole determiner of
+physics for that region of the simulation.
 
 There are many improvements and features waiting to be added.  One limitation
 involves how time steps are calculated.  Because the simulation operates with
@@ -152,7 +159,17 @@ squares.  The meaning of each square is as follows:
     \label{fig:atten-off}
 \end{figure}
 
-\subsection{Criticality and Burnup}
+\subsection{Super-criticality and Burnup}
+
+The configuration shown in Figure \ref{fig:thermal-setup} contains a fuel
+block surounded by a region of moderator all enclosed by a scattering block
+that acts as a reflector.  After a single burst of 1,000 neutrons is released
+into the center of the fuel, the neutron population quickly grows.  With a
+detector placed over the top of the super-critical system, the neutron
+population growth can be quantified. After just over 2 minutes, the population
+passes 15,000 neutrons as can be seen in Figure \ref{fig:thermal-on}.  This
+growth would continue indefinitely if it weren't for the depletion of the
+fuel.
 
 \begin{figure}
     \centering
@@ -168,6 +185,14 @@ squares.  The meaning of each square is as follows:
     \label{fig:thermal-on}
 \end{figure}
 
+After a few minutes of operation in the super-critical state, the reactor was
+shut down by removing the fuel from the system until the neutrons died away.
+This reactor configuration results in non-uniform burnup of the fuel. This is
+apparent in the post shutdown state shown in Figure \ref{fig:thermal-after};
+the fuel's purple color transitions to grey as fissile atoms are burned up.
+The fuel nearer to the moderator has higher burnup due to the short mean free
+path of thermalized neutrons coming from the moderator.
+
 \begin{figure}
     \centering
     \includegraphics{reactor-thermal-after.png}
@@ -176,6 +201,16 @@ squares.  The meaning of each square is as follows:
 \end{figure}
 
 \subsection{Subcritical Multiplication}
+
+Subcritical multiplication is an interesting phenomenon that can be
+illustrated well in the game.  To show this, we break the experiment into two
+setups: a neutron source streaming into a non-fuel environment, and a neutron
+source streaming into an environment with fuel.  Figure
+\ref{fig:scatter-setup} shows the unfueled environment with the neutron
+streaming source on the right and a large scattering block on the left.  A
+detector is placed over the scattering medium and the streaming source is
+turned on. Figure \ref{fig:scatter-equil} shows this setup after the detector
+has reached an approximate equilibrium state with about 2,500 neutrons.
 
 \begin{figure}
     \centering
@@ -190,6 +225,13 @@ squares.  The meaning of each square is as follows:
     \caption{Reference scattering setup reaches an equilibrium neutron population of about 2500 neutrons when fed by a constant streaming source.}
     \label{fig:scatter-equil}
 \end{figure}
+
+The setup and procedure show by Figures \ref{fig:scatter-setup} and
+\ref{fig:scatter-equil} is repeated with a fuel block placed in the center of
+the scattering medium - shown in Figure \ref{fig:subcrit-setup}.  After
+turning on the neutron source, this setup reaches an approximate equilibrium
+state with about 10,000 neutrons - nearly four times more than the same setup
+without the fuel material block.
 
 \begin{figure}
     \centering
@@ -220,31 +262,6 @@ vacuum boundary condition:
 
 The extrapolation distance is $2/3$. A more detailed asymptotic analysis yields
 an extrapolation distance of about $0.71045$.
-
-Later on, we can include a table, even one that spans two columns such as
-Table~\ref{tab:widetable}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table*}[htb]
-  \centering
-\begin{tabular}{llllllllll}\toprule
-      & $\phi_T(0)$      & $\phi_T(10)$      & $\phi_T(20)$      &
-      $\phi_D(0)$      & $\phi_D(10)$      & $\phi_D(20)$      & $\rho$      &
-      $\varepsilon$      & $N_\text{it}$
-\\ \midrule
-$c=0.999$  & 0.9038 & 20.63 & 31.24 & 0.9087 & 20.63 & 31.23 & 0.2192 & $10^{-7}$ & 15
-\\
-$c=0.990$  & 0.3675 & 13.04 & 24.7 & 0.3696 & 13.04 & 24.69 & 0.2184 & $10^{-7}$ & 15
-\\
-$c=0.900$  & 0.009909 & 4.776 & 17.64 & 0.009984 & 4.786 & 17.63 & 0.2118 & $10^{-7}$ & 14
-\\
-$c=0.500$  & $6.069\times 10^{-5}$ & 2.212 & 15.53 & 6.213$\times 10^{-5}$ & 2.239 & 15.53 & 0.2068 & $10^{-7}$ & 13
-\\
-\bottomrule
-\end{tabular}
-  \caption{This is an example of a really wide table which might not normally
-  fit in the document.}
-  \label{tab:widetable}
-\end{table*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
