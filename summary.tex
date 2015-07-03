@@ -44,14 +44,16 @@ such complicated subject matter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
-On each time step of the simulation, neutron positions are updated as a
-function of their velocities.  Then, if the neutron is inside any material,
-possible reactions (e.g. fission, scattering, etc.) occur according to
-probabilities defined by that material.  These probabilities are calculated as
-a function of distance each neutron traveled on the current time step.
-Interaction probabilities and value sampling are not necessarily done using
-"correct" nuclear data or equations.  Rather, fundamental concepts are
-approximately modeled and specific values for probabilities were adjusted to
+The neutron-physics game is a time-step based Monte Carlo simulation and uses
+well-known methodologies for determining interaction probabilities
+\cite{lewis1984computational}. On each time step of the simulation, neutron
+positions are updated as a function of their velocities.  Then, if the neutron
+is inside any material, possible reactions (e.g. fission, scattering, etc.)
+occur according to probabilities defined by that material.  These probabilities
+are calculated as a function of distance each neutron traveled on the current
+time step.  Interaction probabilities and value sampling are not necessarily
+done using "correct" nuclear data or equations.  Rather, fundamental concepts
+are approximately modeled and specific values for probabilities were adjusted to
 make the playing simulation informative and fun.  Physics concepts modeled
 include:
 
