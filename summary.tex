@@ -37,7 +37,7 @@ open-source, neutron-physics simulation game was created \cite{Carlsen2015} that
 allows users to explore interactions of neutrons with different materials and
 geometric configurations. Basic concepts such as scattering, absorption, fission
 are exposed to students in an interactive, composable environment. Used in
-conjunction with traditional teaching methods, such a tool may prove valueable
+conjunction with traditional teaching methods, such a tool may prove valuable
 in an effort to instill basic physical intuition and accelerate the learning of
 such complicated subject matter.
 
@@ -96,8 +96,8 @@ results in neutrons traveling too far between events and reaction
 probabilities being scaled inappropriately high.  This could be prevented by
 adjusting a neutron weight parameter instead of increasing the neutron
 population when the time change between time steps grows too large.  This
-would simulataneously allow the user to see how power continues to grow over
-much longer periods of time in supercritical configurations.  
+would simultaneously allow the user to see how power continues to grow over
+much longer periods of time in super-critical configurations.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
@@ -136,7 +136,7 @@ A classic initial problem in atomic physics involves the attenuation of particle
 transport through materials. This simple concept becomes much more complicated
 when the population density of the material changes, as in the case of an
 absorbent material. The combination of these two concepts can be easily
-demostrated using the neutron physics game.
+demonstrated using the neutron physics game.
 
 An attenuation-with-absorption experiment setup is shown in Figure
 \ref{fig:atten-setup}. It is comprised of a unidirectional-beam neutron source,
@@ -171,7 +171,7 @@ portion in blue.
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{atten-done.png}
-    \caption{Upon depeletion of the absorber, no attenuation of neutrons is observed.}
+    \caption{Upon depletion of the absorber, no attenuation of neutrons is observed.}
     \label{fig:atten-done}
 \end{figure}
 
@@ -185,7 +185,7 @@ portion in blue.
 \subsection{Super-criticality and Burnup}
 
 The configuration shown in Figure \ref{fig:thermal-setup} contains a fuel
-block surounded by a region of moderator all enclosed by a scattering block
+block surrounded by a region of moderator all enclosed by a scattering block
 that acts as a reflector.  After a single burst of 1,000 neutrons is released
 into the center of the fuel, the neutron population quickly grows.  With a
 detector placed over the top of the super-critical system, the neutron
@@ -197,14 +197,14 @@ fuel.
 \begin{figure}
     \centering
     \includegraphics{reactor-thermal-setup.png}
-    \caption{Supercritical thermal reactor setup.}
+    \caption{Super-critical thermal reactor setup.}
     \label{fig:thermal-setup}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics{reactor-thermal-1min.png}
-    \caption{Supercritical thermal reactor continues to grow its neutron population. }
+    \caption{Super-critical thermal reactor continues to grow its neutron population. }
     \label{fig:thermal-on}
 \end{figure}
 
@@ -215,7 +215,7 @@ apparent in the post shutdown state shown in Figure \ref{fig:thermal-after};
 the fuel's purple color transitions to grey as fissile atoms are burned up.
 The fuel nearer to the moderator has higher burnup due to the short mean free
 path of thermalized neutrons coming from the moderator.  Also notable is that
-removing the moderator from this configuration would result in a subcritical
+removing the moderator from this configuration would result in a sub-critical
 configuration. 
 
 \begin{figure}
@@ -225,9 +225,9 @@ configuration.
     \label{fig:thermal-after}
 \end{figure}
 
-\subsection{Subcritical Multiplication}
+\subsection{Sub-critical Multiplication}
 
-Subcritical multiplication is an interesting phenomenon that can be
+Sub-critical multiplication is an interesting phenomenon that can be
 illustrated well in the game.  To show this, we break the experiment into two
 setups: a neutron source streaming into a non-fuel environment, and a neutron
 source streaming into an environment with fuel.  Figure
@@ -261,22 +261,42 @@ without the fuel material block.
 \begin{figure}
     \centering
     \includegraphics{subcrit-mult-setup.png}
-    \caption{Fuel was introduced into the scattering medium creating a subcritical multiplication configuration.}
+    \caption{Fuel was introduced into the scattering medium creating a sub-critical multiplication configuration.}
     \label{fig:subcrit-setup}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics{subcrit-mult-equil.png}
-    \caption{Subcritical multiplication reaches an equilibrium neutron population of about 10,000 neutrons when fed by a constant neutron source.}
+    \caption{Sub-critical multiplication reaches an equilibrium neutron population of about 10,000 neutrons when fed by a constant neutron source.}
     \label{fig:subcrit-equil}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
+A new tool has been provided to assist the early learning of both simple and
+complex concepts in the field of nuclear engineering. The game allows users to
+compose a neutron-physics scenario and observe complicated interactions such as
+scattering, absorption, and fission. Users are provided the capability of
+constructing scenarios with multi-directional neutron beams, isotropic neutron
+pulses, and detectors. 
 
-This and other limitations could easily be improved upon.  
+A number of features can be developed to enhance the learning capacity the game
+provides. For example, materials could be introduced that include multiple
+reaction events, such as absorption and scattering. Further improvements might
+include the ability for users to compose their own objects on the fly to
+investigate the effect of cross section magnitudes, in both an absolute and
+relative context. 
+
+The tool's purpose is to provide a basic platform upon which these complicated
+interactions can be visualized and intuition can be built. As noted by Felder
+\cite{felder2000learning}, such tools can fill a niche not normally provided to
+engineering students. Used in conjunction with traditional teaching methods, a
+tool such as this may prove to be quite useful in real-life educational
+settings. The authors welcome critiques, comments, feedback, and requests
+through either personal communication or through interaction with the Github
+repository.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{ans}
