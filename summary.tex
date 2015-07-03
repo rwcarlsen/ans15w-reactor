@@ -47,7 +47,7 @@ such complicated subject matter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
-The neutron-physics game employs a time-step based Monte Carlo
+The neutron-physics game is a time-step based Monte Carlo
 simulation \cite{lewis1984computational}. On each time step of the simulation,
 neutron positions are updated as a function of their velocities.  Then, if the
 neutron is inside any material, possible reactions (e.g. fission, scattering,
@@ -93,20 +93,18 @@ There are many improvements and features waiting to be added.  One limitation
 involves how time steps are calculated.  Because the simulation operates with
 a variable frame rate, the time change and position change for neutrons
 between time steps increases as the system becomes more computationally
-expensive to model (i.e. too many neutrons on the screen).  This slowdown
-results in neutrons traveling too far between events and reaction
-probabilities being scaled inappropriately high.  This could be prevented by
-adjusting a neutron weight parameter instead of increasing the neutron
-population when the time change between time steps grows too large.  This
-would simultaneously allow the user to see how power continues to grow over
-much longer periods of time in super-critical configurations.  
+expensive to model.  This slowdown results in neutrons traveling too far
+between events and reaction probabilities being scaled inappropriately high.
+This could be prevented by adjusting a neutron weight parameter instead of
+increasing the neutron population when the time change between time steps
+grows too large.  This and other many other improvements are possible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
 
 Below, three simple experiments are presented that show how this simulation
-game can be used to explore nuclear engineering principles.  Because this
-simulation game is open source, you can download and run these (and other)
+game can be used to explore nuclear engineering principles.  Because the
+project is open source, you can download and run these and other
 experiments yourself.  The code is available on Github at
 \url{https://github.com/rwcarlsen/reactor}.  Materials and other objects used
 in the simulation experiments below are represented by different colored
@@ -134,50 +132,39 @@ squares.  The meaning of each square is as follows:
 
 \subsection{Attenuation}
 
-A classic initial problem in atomic physics involves the attenuation of particle
-transport through materials. This simple concept becomes much more complicated
-when the population density of the material changes, as in the case of an
-absorbent material. The combination of these two concepts can be easily
-demonstrated using the neutron physics game.
+A classic initial problem in nuclear physics involves the attenuation of
+particles through materials. This simple concept becomes more complicated when
+considering changes in absorber atom density as neutrons are captured. These
+concepts can be easily demonstrated using the neutron physics game.  An
+attenuation experiment setup is shown in Figure \ref{fig:atten-setup}. It is
+comprised of a unidirectional-beam neutron source, detector, absorbing
+material, and an additional detector. The initial detector provides an
+unattenuated neutron count/density. The neutrons then interact with the
+absorbing material over the width of the block. The final detector provides an
+attenuated neutron count/density.
 
-An attenuation-with-absorption experiment setup is shown in Figure
-\ref{fig:atten-setup}. It is comprised of a unidirectional-beam neutron source,
-detector, absorbing material, and an additional detector. The initial detector
-provides a learner with a count of the fluence of unattenuated neutrons. The
-neutrons then interact with the absorbing material over the width of the
-block. The final detector provides a count of the unattenuated neutron fluence.
+After the beam is turned on, active attenuation of the neutron beam can be
+observed as shown in Figure \ref{fig:atten-on}. In time, however, the absorber
+atoms gradually become transmuted and cannot capture additional neutrons.
+Eventually, the material becomes effectively transparent to neutrons, as shown
+in Figure \ref{fig:atten-done}. Upon completion of this particular experiment,
+the entirety of the absorber material in the beam's pathway has been burned.
+This phenomenon is shown clearly in Figure \ref{fig:atten-off} with the burned
+portion in grey and the unburned portion in blue.
 
-\begin{figure}
+\begin{figure}[hb]
     \centering
     \includegraphics[width=\columnwidth]{atten-setup.png}
     \caption{An attenuation-with-absorption experimental setup.}
     \label{fig:atten-setup}
-\end{figure}
-
-After the beam is turned on, the learner observes active attenuation of the
-neutron beam, as shown in Figure \ref{fig:atten-on}. In time, however, the
-population of absorbing material greatly decreases, effectively making the
-material transparent to neutrons, as shown in Figure \ref{fig:atten-on}. Upon
-completion of this particular experiment, the entirety of the material in the
-beam's pathway has been consumed. This phenomenon is shown in Figure
-\ref{fig:atten-off}, with the consumed portion in grey and the non-consumed
-portion in blue.
-
-\begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{atten-on.png}
     \caption{Initially, attenuation is shown due to neutron absorption.}
     \label{fig:atten-on}
-\end{figure}
-
-\begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{atten-done.png}
     \caption{Upon depletion of the absorber, no attenuation of neutrons is observed.}
     \label{fig:atten-done}
-\end{figure}
-
-\begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{atten-off.png}
     \caption{After turning off the neutron beam, absorber depletion is observable.}
@@ -196,20 +183,6 @@ passes 15,000 neutrons as can be seen in Figure \ref{fig:thermal-on}.  This
 growth would continue indefinitely if it weren't for the depletion of the
 fuel.
 
-\begin{figure}
-    \centering
-    \includegraphics{reactor-thermal-setup.png}
-    \caption{Super-critical thermal reactor setup.}
-    \label{fig:thermal-setup}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics{reactor-thermal-1min.png}
-    \caption{Super-critical thermal reactor continues to grow its neutron population. }
-    \label{fig:thermal-on}
-\end{figure}
-
 After a few minutes of operation in the super-critical state, the reactor was
 shut down by removing the fuel from the system until the neutrons died away.
 This reactor configuration results in non-uniform burnup of the fuel. This is
@@ -220,6 +193,18 @@ path of thermalized neutrons coming from the moderator.  Also notable is that
 removing the moderator from this configuration would result in a sub-critical
 configuration. 
 
+\begin{figure}
+    \centering
+    \includegraphics{reactor-thermal-setup.png}
+    \caption{Super-critical thermal reactor setup.}
+    \label{fig:thermal-setup}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics{reactor-thermal-1min.png}
+    \caption{Super-critical thermal reactor continues to grow its neutron population. }
+    \label{fig:thermal-on}
+\end{figure}
 \begin{figure}
     \centering
     \includegraphics{reactor-thermal-after.png}
