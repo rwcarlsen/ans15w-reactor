@@ -14,6 +14,8 @@ $^{*}$University of Wisconsin, Nuclear Engineering Dept., 1500 Engineering Dr., 
 \usepackage{booktabs} % nice rules (thick lines) for tables
 \usepackage{microtype} % improves typography for PDF
 
+\usepackage{url}
+
 \newcommand{\SN}{S$_N$}
 \renewcommand{\vec}[1]{\bm{#1}} %vector is bold italic
 \newcommand{\vd}{\bm{\cdot}} % slightly bold vector dot
@@ -23,6 +25,8 @@ $^{*}$University of Wisconsin, Nuclear Engineering Dept., 1500 Engineering Dr., 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+
+An open source reactor simulation game was created.
 
 Microsoft Word can be a finicky beastie. \LaTeX\ abstracts content from
 formatting, allowing the user to let a style file such as this take care of
@@ -35,30 +39,82 @@ paper is cited here \cite{Lar2008}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
-Equations look exceedingly pretty. Here is a 3-D, monoenergetic, steady-state
-transport equation with isotropic scattering and an isotropic extraneous source:
-\begin{subequations} \label{eqs:fullTransport}
-\begin{multline} \label{eq:fullTransportVol}
-  \vec{\Omega}\vd \grad \psi(\vec{x}, \vec{\Omega})
-  + \sigma(\vec{x}) \psi (\vec{x}, \vec{\Omega})
-\\ =
-  \frac{\sigma_s(\vec{x})}{4\pi} \int_{4\pi} \psi(\vec{x},\vec{\Omega}')
-  \ud\Omega' + \frac{q(\vec{x})}{4\pi}
-  \equiv \frac{1}{4\pi} Q(\vec{x}) \,,
-\end{multline}
-inside $\vec{x} \in V$, $\vec{\Omega} \in 4\pi$, with an incident boundary
-condition
-\begin{equation} \label{eq:fullTransportBndy}
-  \psi(\vec{x}, \vec{\Omega}) = \psi^b(\vec{x}, \vec{\Omega}) \,,
- \quad \vec{x} \in \partial V, \ \vec{\Omega} \vd \vec{n} < 0\,.
-\end{equation}
-\end{subequations}
+On each time step of the simulation, neutron positions are updated as a
+function of their velocities.  Then, if the neutron is inside any material,
+possible reactions (e.g. fission, scattering, etc.) occur according to
+probabilities defined by that material.  These probabilities are calculated as
+a function of distance each neutron traveled on the current time step.
+Physics concepts modeled include:
+
+\begin{itemize}
+
+    \item Absorption: The probability of absorption is a function of neutron
+        energy/speed.  Absorber material can also be burned up over time.
+
+    \item Scattering: All scattering is isotropic.
+
+    \item Fission: The probability of fission is a function of neutron
+        energy/speed.  Fuel material can also be burned up over time, loosing
+        reactivity.
+
+    \item Moderation: Neutrons can loose some portion of their energy when
+        scattering in certain materials. Some materials moderate more or less
+        effectively as a function of their "temperature" (number of neutrons
+        inside them) - this enables crude modeling of concepts like reactor
+        void coefficients.
+
+\end{itemize}
+
+In addition to the neutron population, the positions of materials and other
+blocks are tracked and drawn to the screen in real-time.  The user can drag
+around material blocks with the mouse.  Partially transparent detector blocks
+can also be moved around by the user to investigate neutron populations of
+specific parts of the simulation environment.  The user can also introduce
+isotropic bursts of neutrons at any location they right-click in the
+environment (including inside material blocks).
+
+There are many improvements and features waiting to be added.  One limitation
+involves how time steps are calculated.  Because the simulation operates with
+a variable frame rate, the time change and position change for neutrons
+between time steps increases as the system becomes more computationally
+expensive to model (i.e. too many neutrons on the screen).  This slowdown
+results in neutrons traveling too far between events and reaction
+probabilities being scaled inappropriately high.  This could be prevented by
+adjusting a neutron weight parameter instead of increasing the neutron
+population when the time change between time steps grows too large.  This
+would simulataneously allow the user to see how power continues to grow over
+much longer periods of time in supercritical configurations.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
 
-The results were interesting, so interesting in fact that we have decided to
-present them here.
+Because this simulation game is open source, you can download and run these
+(and other) experiments yourself.  The code lives on Github at
+\url{https://github.com/rwcarlsen/reactor}.
+
+Materials and other objects used in the simulation experiments below are
+represented by different colored squares.  The meaning of each square is as
+follows:
+
+\begin{itemize}
+        
+    \item White (large): neutron energy independent scattering medium.
+
+    \item Green (medium): neutron energy independent moderating/scattering.
+        medium.
+
+    \item Blue (medium): neutron energy dependent burnable absorber.
+
+    \item Purple (small): fissile material or fuel.
+
+    \item Olive (small): togglable constant streaming neutron source.
+
+    \item Yellow (transparent): neutron detector that reports the number of
+        neutrons inside it without affecting neutrons or material properties
+        underneath itself.
+
+\end{itemize}
+
 
 \subsection{Attenuation}
 
@@ -188,9 +244,8 @@ $c=0.500$  & $6.069\times 10^{-5}$ & 2.212 & 15.53 & 6.213$\times 10^{-5}$ & 2.2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
-The included ANS style file and this clear example file are a panacea for
-the hours of headache that invariably results from formatting a document in
-Microsoft Word.
+
+This and other limitations could easily be improved upon.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgments}
