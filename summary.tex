@@ -27,12 +27,12 @@ University of Wisconsin, Nuclear Engineering Dept., 1500 Engineering Dr., Madiso
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Engineering learning and teaching styles are known to be somewhat contradictory
-\cite{felder2000learning}. While many students tend to prefer active and visual
-learning, most education is in the form of abstract and sequential
-concepts. This is no different in nuclear engineering, where core concepts
-include difficult and demanding subjects such as energy and direction-dependent
-neutron transport. 
+Engineering learning and teaching styles are known to be somewhat
+contradictory \cite{felder2000learning}. While many students tend to prefer
+active and visual learning, most education is in the form of abstract and
+sequential concepts. This approach is no different in nuclear engineering,
+where core concepts include difficult and demanding subjects such as energy
+and direction-dependent neutron transport. 
 
 Computer games provide a fun and natural way to reinforce learning and gain
 valuable intuition for physical phenomena. In this vein, an open-source,
@@ -47,17 +47,17 @@ such complicated subject matter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 
-The neutron-physics game is a time-step based Monte Carlo
-simulation \cite{lewis1984computational}. On each time step of the simulation,
-neutron positions are updated as a function of their velocities.  Then, if the
-neutron is inside any material, possible reactions (e.g. fission, scattering,
-etc.)  occur according to probabilities defined by that material.  These
-probabilities are calculated as a function of distance each neutron traveled on
-the current time step.  Interaction probabilities and value sampling are not
-necessarily done using "correct" nuclear data or equations.  Rather, fundamental
-concepts are approximately modeled and specific values for probabilities were
-adjusted to make the playing simulation informative and fun.  Physics concepts
-modeled include:
+The neutron-physics game is a time-step based Monte Carlo simulation
+\cite{lewis1984computational}. On each time step of the simulation, neutron
+positions are updated as a function of their velocities.  Then, if the neutron
+is inside any material, possible reactions (e.g. fission, scattering, etc.)
+occur according to probabilities defined by that material.  These
+probabilities are calculated as a function of distance each neutron traveled
+on the current time step.  Interaction probabilities and value sampling are
+not necessarily done using "correct" nuclear data or equations.  Rather,
+fundamental concepts are approximately modeled and specific values for
+reaction probabilities were adjusted to make playing simulation informative
+and fun.  Physics concepts modeled include:
 
 \begin{itemize}
 
@@ -97,7 +97,7 @@ expensive to model.  This slowdown results in neutrons traveling too far
 between events and reaction probabilities being scaled inappropriately high.
 This could be prevented by adjusting a neutron weight parameter instead of
 increasing the neutron population when the time change between time steps
-grows too large.  This and other many other improvements are possible.
+grows too large.  This and many other improvements are possible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
@@ -114,7 +114,7 @@ squares.  The meaning of each square is as follows:
         
     \item White (large): neutron energy independent scattering medium.
 
-    \item Green (medium): neutron energy independent moderating/scattering.
+    \item Green (medium): neutron energy independent moderating/scattering
         medium.
 
     \item Blue (medium): neutron energy dependent burnable absorber.
@@ -186,7 +186,7 @@ fuel.
 After a few minutes of operation in the super-critical state, the reactor was
 shut down by removing the fuel from the system until the neutrons died away.
 This reactor configuration results in non-uniform burnup of the fuel. This is
-apparent in the post shutdown state shown in Figure \ref{fig:thermal-after};
+apparent in the post-shutdown state shown in Figure \ref{fig:thermal-after};
 the fuel's purple color transitions to grey as fissile atoms are burned up.
 The fuel nearer to the moderator has higher burnup due to the short mean free
 path of thermalized neutrons coming from the moderator.  Also notable is that
